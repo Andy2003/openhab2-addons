@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="smainverter"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:thing="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0"
+		xsi:schemaLocation="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0 http://eclipse.org/smarthome/schemas/thing-description-1.0.0.xsd">
+
+	<!-- Sample Thing Type -->
+	<thing-type id="solar-inverter">
+		<label>SMA Solar-Inverter</label>
+
+		<channels>
+			<channel id="powerOutAC_L1" typeId="powerType">
+				<label>Power production AC Phase 1</label>
+			</channel>
+			<channel id="powerOutAC_L2" typeId="powerType">
+				<label>Power production AC Phase 2</label>
+			</channel>
+			<channel id="powerOutAC_L3" typeId="powerType">
+				<label>Power production AC Phase 3</label>
+			</channel>
+			<channel id="powerOutAC_Total" typeId="powerType">
+				<label>Power production AC</label>
+			</channel>
+			<channel id="energyOutCounter" typeId="energyType">
+				<label>Energy production total</label>
+			</channel>
+		</channels>
+
+		<representation-property>serialNumber</representation-property>
+
+		<config-description-ref uri="thing-type:smainverter:inverter"/>
+
+	</thing-type>
+
+	<thing-type id="battery-inverter">
+		<label>SMA Battery-Inverter</label>
+
+		<channels>
+			<channel id="soc" typeId="system.battery-level">
+				<label>State of charge</label>
+			</channel>
+		</channels>
+
+		<representation-property>serialNumber</representation-property>
+
+		<config-description-ref uri="thing-type:smainverter:inverter"/>
+
+	</thing-type>
+
+	<channel-type id="powerType">
+		<item-type>Number</item-type>
+		<label>Power</label>
+		<category>Energy</category>
+		<state pattern="%.0f W" readOnly="true"/>
+	</channel-type>
+
+	<channel-type id="energyType">
+		<item-type>Number</item-type>
+		<label>Energy</label>
+		<category>Energy</category>
+		<state pattern="%.0f Wh" readOnly="true"/>
+	</channel-type>
+
+</thing:thing-descriptions>
